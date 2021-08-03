@@ -33,7 +33,7 @@ variable "rancher_server" {
   default = {
     ns = "cattle-system"
     version = "v2.5.7"
-    branch = "latest"
+    branch = "stable"
     chart_set = []
   }
   description = "Rancher server helm chart properties. Chart sets can be added using chart_set param"
