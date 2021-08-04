@@ -6,6 +6,7 @@ resource "helm_release" "cert_manager" {
   version    = var.cert_manager.version
   namespace  = var.cert_manager.ns
   create_namespace = true
+  wait_for_jobs = true
 
   dynamic set {
     for_each = var.cert_manager.chart_set
@@ -24,6 +25,7 @@ resource "helm_release" "rancher_server" {
   version    = var.rancher_server.version
   namespace  = var.rancher_server.ns
   create_namespace = true
+  wait_for_jobs = true
 
   set {
     name  = "hostname"
