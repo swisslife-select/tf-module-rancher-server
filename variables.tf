@@ -32,7 +32,7 @@ variable "rancher_server" {
   })
   default = {
     ns = "cattle-system"
-    version = "v2.5.9"
+    version = "v2.5.8"
     branch = "latest"
     chart_set = []
   }
