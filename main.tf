@@ -50,5 +50,34 @@ resource "helm_release" "rancher_server" {
   ]
 }
 
+resource "kubernetes_cluster_role" "cluster-admin" {
+  metadata {
+    name = "cluster-admin"
+  }
 
-  
+  rule {
+    api_groups = ["*"]
+    resources  = ["*"]
+    verbs      = ["*"]
+  }
+
+  depends_on = [
+    helm_release.rancher_server
+  ]
+}
+
+resource "kubernetes_cluster_role" "system-discovery" {
+  metadata {
+    name = "system:discovery"
+  }
+
+  rule {
+    non_resource_urls = ["/api", "/api/*", "/apis", "/apis/*", "/healthz", "/livez", "/openapi", "/openapi/*", "/readyz", "/version", "/version/"]
+    verbs      = ["get"]
+  }
+
+  depends_on = [
+    helm_release.rancher_server
+  ]
+}
+
