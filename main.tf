@@ -61,6 +61,11 @@ resource "kubernetes_cluster_role" "cluster-admin" {
     verbs      = ["*"]
   }
 
+  rule {
+    non_resource_urls = ["*"]
+    verbs             = ["*"]
+  }
+  
   depends_on = [
     helm_release.rancher_server
   ]
